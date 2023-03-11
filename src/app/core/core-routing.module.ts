@@ -5,11 +5,10 @@ import { WelcomePageComponent } from './pages/welcome-page/welcome-page.componen
 const routes: Routes = [
   { path: '', redirectTo: '/welcome', pathMatch: 'full' },
   { path: 'welcome', component: WelcomePageComponent },
-
   {
     path: 'auth',
-    loadChildren: () => import('../auth/auth.module').then((m) => m.AuthModule),
-  },
+    loadChildren: () => import('@auth/auth.module').then((m) => m.AuthModule),
+  }, // use @auth/auth.module here
 ];
 
 @NgModule({
