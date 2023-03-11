@@ -11,7 +11,14 @@
           <a class="px-4 hover:text-gray-200 hover:underline" href="#">Shop</a>
         </li>
         <li>
-          <a class="px-4 hover:text-gray-200 hover:underline" href="#">About</a>
+          <a
+            class="px-4 hover:text-gray-200 hover:underline"
+            routerLink="/auth/sign-up"
+            [routerLinkActive]="'btn-inline_active'"
+            [routerLinkActiveOptions]="{ exact: true }"
+          >
+            Sign Up
+          </a>
         </li>
       </ul>
     </nav>

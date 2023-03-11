@@ -2,6 +2,10 @@ import { Component, HostBinding, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable, BehaviorSubject } from 'rxjs';
 import * as AuthActions from './core/store/actions/auth.actions';
+import {
+  isPendingSelector,
+  isFetchedSelector,
+} from '@core/store/selectors/auth.selectors';
 
 @Component({
   selector: 'app-root',
@@ -10,6 +14,10 @@ import * as AuthActions from './core/store/actions/auth.actions';
 })
 export class AppComponent implements OnInit {
   @HostBinding('class') value = 'root';
+
+  isPending: Observable<boolean> = this.store.select(isPendingSelector);
+
+  isFetched: Observable<boolean> = this.store.select(isFetchedSelector);
 
   constructor(private store: Store) {}
 

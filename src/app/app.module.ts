@@ -4,14 +4,10 @@ import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
-import { StoreModule } from '@ngrx/store';
-import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import { EffectsModule } from '@ngrx/effects';
-import { StoreRouterConnectingModule } from '@ngrx/router-store';
 
 @NgModule({
   declarations: [AppComponent],
-  imports: [BrowserModule, CoreModule, RouterModule, EffectsModule.forRoot([])],
+  imports: [BrowserModule, CoreModule, RouterModule],
   providers: [],
   bootstrap: [AppComponent],
 })
