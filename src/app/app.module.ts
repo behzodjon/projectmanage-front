@@ -4,10 +4,11 @@ import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
+import { SpinnerModule } from './shared/spinner/spinner.module';
 
 @NgModule({
   declarations: [AppComponent],
-  imports: [BrowserModule, CoreModule, RouterModule],
+  imports: [BrowserModule, CoreModule, RouterModule, SpinnerModule],
   providers: [],
   bootstrap: [AppComponent],
 })

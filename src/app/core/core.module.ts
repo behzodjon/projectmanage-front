@@ -15,6 +15,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { WelcomePageComponent } from './pages/welcome-page/welcome-page.component';
 import { NotFoundPageComponent } from './pages/not-found-page/not-found-page.component';
+import { ToastModule } from '@shared/toast/toast.module';
 
 import { reducers } from './store/reducers/app.reducer';
 import { AuthEffects } from './store/effects/auth.effects';
@@ -50,6 +51,7 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
         deps: [HttpClient],
       },
     }),
+    ToastModule,
   ],
   declarations: [
     HeaderComponent,
@@ -57,7 +59,7 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
     WelcomePageComponent,
     NotFoundPageComponent,
   ],
-  exports: [HeaderComponent, FooterComponent],
+  exports: [HeaderComponent, FooterComponent, ToastModule],
   providers: [AuthService, interceptors, AuthGuard],
 })
 export class CoreModule {

@@ -2,6 +2,8 @@
   <app-header></app-header>
 </header>
 <main class="main">
+  <app-spinner *ngIf="isPending | async"></app-spinner>
+  <app-toast></app-toast>
   <router-outlet></router-outlet>
 </main>
 <footer class="footer">

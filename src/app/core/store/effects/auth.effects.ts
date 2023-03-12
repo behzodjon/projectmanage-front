@@ -106,8 +106,7 @@ export class AuthEffects {
         tap((): void => {
           localStorage.removeItem(LocalStorageKeys.USER);
           localStorage.removeItem(LocalStorageKeys.TOKEN);
-        }),
-        tap((): Promise<boolean> => this.router.navigateByUrl(''))
+        })
       ),
     { dispatch: false }
   );
@@ -132,14 +131,14 @@ export class AuthEffects {
     () =>
       this.actions$.pipe(
         ofType(AuthActions.getUserSuccess),
-        tap((): void => {
-          if (
-            this.router.url === '/auth/login' ||
-            this.router.url === '/auth/sign-up'
-          ) {
-            this.router.navigateByUrl('');
-          }
-        }),
+        // tap((): void => {
+        //   if (
+        //     this.router.url === '/auth/login' ||
+        //     this.router.url === '/auth/sign-up'
+        //   ) {
+        //     this.router.navigateByUrl('');
+        //   }
+        // }),
         tap((user: UserModel): void => {})
       ),
     { dispatch: false }

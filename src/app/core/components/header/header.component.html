@@ -8,14 +8,26 @@
         class="flex items-center justify-between text-sm font-bold text-white no-underline uppercase"
       >
         <li>
-          <a class="px-4 hover:text-gray-200 hover:underline" href="#">Shop</a>
+          <a
+            routerLink="/"
+            [routerLinkActive]="'btn-inline_active'"
+            [routerLinkActiveOptions]="{ exact: true }"
+            class="px-4 hover:text-gray-200 hover:underline"
+            >Home</a
+          >
+        </li>
+        <li>
+          <a
+            class="px-4 hover:text-gray-200 hover:underline"
+            routerLink="/auth/login"
+          >
+            Login
+          </a>
         </li>
         <li>
           <a
             class="px-4 hover:text-gray-200 hover:underline"
             routerLink="/auth/sign-up"
-            [routerLinkActive]="'btn-inline_active'"
-            [routerLinkActiveOptions]="{ exact: true }"
           >
             Sign Up
           </a>
