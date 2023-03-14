@@ -5,8 +5,8 @@ import { ToastDataModel } from '../models/toast.model';
 
 @Injectable()
 export class ToastService {
-  //   toastData$: Subject<ToastDataModel | null> = new Subject();
-  toastData$ = new Subject<ToastDataModel | null>();
+  toastData$: Subject<ToastDataModel | null> = new Subject();
+  // toastData$ = new Subject<ToastDataModel | null>();
 
   showToast(data: ToastDataModel): void {
     this.toastData$.next(data);

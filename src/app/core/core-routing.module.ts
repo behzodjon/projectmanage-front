@@ -10,6 +10,12 @@ const routes: Routes = [
   { path: '', redirectTo: '/welcome', pathMatch: 'full' },
 
   { path: 'welcome', component: WelcomePageComponent },
+
+  {
+    path: 'projects',
+    loadChildren: () =>
+      import('../projects/projects.module').then((m) => m.ProjectsModule),
+  },
 ];
 
 @NgModule({

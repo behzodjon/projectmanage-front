@@ -6,6 +6,7 @@ import { switchMap, map, catchError, tap, mergeMap } from 'rxjs/operators';
 import { Store } from '@ngrx/store';
 
 import { AuthService } from '@auth/services/auth.service';
+import { ToastService } from '@shared/toast/service/toast.service';
 
 import * as AuthActions from '../actions/auth.actions';
 
@@ -24,6 +25,7 @@ export class AuthEffects {
   constructor(
     private actions$: Actions,
     private authService: AuthService,
+    private toastService: ToastService,
     private router: Router,
     private store: Store
   ) {}
@@ -32,8 +34,6 @@ export class AuthEffects {
     this.actions$.pipe(
       ofType(AuthActions.SignUp),
       switchMap((action) => {
-        console.log('Data:', action);
-
         return this.authService
           .signUp({
             name: action.name,
@@ -58,7 +58,14 @@ export class AuthEffects {
     () =>
       this.actions$.pipe(
         ofType(AuthActions.SignUpFailed),
-        tap((error: ErrorResponseModel): void => {})
+        tap((error: ErrorResponseModel): void => {
+          this.toastService.showToast({
+            title: 'Sign up error',
+            description:
+              error.statusCode == '409' ? 'Login already exist' : 'Bad Request',
+            status: 'error',
+          });
+        })
       ),
     { dispatch: false }
   );
@@ -94,7 +101,14 @@ export class AuthEffects {
     () =>
       this.actions$.pipe(
         ofType(AuthActions.LogInFailed),
-        tap((error: ErrorResponseModel): void => {})
+        tap((error: ErrorResponseModel): void => {
+          this.toastService.showToast({
+            title: 'Login error',
+            description:
+              error.statusCode == '400' ? 'Bad Request' : 'Authorization error',
+            status: 'error',
+          });
+        })
       ),
     { dispatch: false }
   );
@@ -107,6 +121,7 @@ export class AuthEffects {
           localStorage.removeItem(LocalStorageKeys.USER);
           localStorage.removeItem(LocalStorageKeys.TOKEN);
         })
+        // tap((): Promise<boolean> => this.router.navigateByUrl(''))
       ),
     { dispatch: false }
   );
@@ -131,15 +146,21 @@ export class AuthEffects {
     () =>
       this.actions$.pipe(
         ofType(AuthActions.getUserSuccess),
-        // tap((): void => {
-        //   if (
-        //     this.router.url === '/auth/login' ||
-        //     this.router.url === '/auth/sign-up'
-        //   ) {
-        //     this.router.navigateByUrl('');
-        //   }
-        // }),
-        tap((user: UserModel): void => {})
+        tap((): void => {
+          // if (
+          //   this.router.url === '/auth/login' ||
+          //   this.router.url === '/auth/sign-up'
+          // ) {
+          //   this.router.navigateByUrl('');
+          // }
+        }),
+        tap((user: UserModel): void => {
+          this.toastService.showToast({
+            title: 'Login successful',
+            description: `${user.name} is logged in!`,
+            status: 'success',
+          });
+        })
       ),
     { dispatch: false }
   );
@@ -147,7 +168,13 @@ export class AuthEffects {
   private getUserFailed$ = createEffect(() =>
     this.actions$.pipe(
       ofType(AuthActions.getUserFailed),
-      tap((): void => {}),
+      tap((): void => {
+        this.toastService.showToast({
+          title: 'Login error',
+          description: 'User was not founded!',
+          status: 'error',
+        });
+      }),
       switchMap(async () => AuthActions.LogOut())
     )
   );
@@ -188,7 +215,13 @@ export class AuthEffects {
     () =>
       this.actions$.pipe(
         ofType(AuthActions.UpdateUserSuccess),
-        tap((user: UserModel): void => {})
+        tap((user: UserModel): void => {
+          this.toastService.showToast({
+            title: 'User update successful',
+            description: `${user.name} is updated!`,
+            status: 'success',
+          });
+        })
       ),
     { dispatch: false }
   );
@@ -197,7 +230,13 @@ export class AuthEffects {
     () =>
       this.actions$.pipe(
         ofType(AuthActions.UpdateUserFailed),
-        tap((error: ErrorResponseModel): void => {})
+        tap((error: ErrorResponseModel): void => {
+          this.toastService.showToast({
+            title: 'User update error',
+            description: error.message ?? 'Something went wrong',
+            status: 'error',
+          });
+        })
       ),
     { dispatch: false }
   );
@@ -210,7 +249,13 @@ export class AuthEffects {
       ),
       mergeMap(([, user]) => {
         return this.authService.deleteUser(user?.id!).pipe(
-          tap((): void => {}),
+          tap((): void => {
+            this.toastService.showToast({
+              title: 'User delete successful',
+              description: 'Deleted user',
+              status: 'success',
+            });
+          }),
           map(() => AuthActions.LogOut())
         );
       })

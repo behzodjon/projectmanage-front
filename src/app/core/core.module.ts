@@ -24,6 +24,8 @@ import { AuthService } from '@auth/services/auth.service';
 import { interceptors } from './interceptors/interceptors';
 
 import { AuthGuard } from './guards/auth.guard';
+import { ConfirmationModalModule } from '@app/shared/confirmation-modal/confirmation-modal.module';
+import { BoardService } from '@app/projects/services/board.service';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
@@ -52,6 +54,7 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
       },
     }),
     ToastModule,
+    ConfirmationModalModule,
   ],
   declarations: [
     HeaderComponent,
@@ -59,8 +62,13 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
     WelcomePageComponent,
     NotFoundPageComponent,
   ],
-  exports: [HeaderComponent, FooterComponent, ToastModule],
-  providers: [AuthService, interceptors, AuthGuard],
+  exports: [
+    HeaderComponent,
+    FooterComponent,
+    ToastModule,
+    ConfirmationModalModule,
+  ],
+  providers: [AuthService, interceptors, AuthGuard, BoardService],
 })
 export class CoreModule {
   constructor() {}

@@ -1,0 +1,21 @@
+<section class="py-20">
+  <div class="container px-4">
+    <div class="flex justify-end">
+      <button
+        (click)="addBoard()"
+        type="button"
+        class="inline-block rounded bg-blue-500 px-6 pt-2.5 pb-2 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-blue-600"
+      >
+        Add board
+      </button>
+    </div>
+    <div class="grid grid-cols-3 gap-4 mt-10">
+      <app-project-item
+        *ngFor="let project of boards | async"
+        [project]="project"
+        (edit)="editProject(project)"
+        (delete)="onOpenConfirmModal(project)"
+      ></app-project-item>
+    </div>
+  </div>
+</section>

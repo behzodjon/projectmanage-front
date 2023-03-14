@@ -6,6 +6,7 @@ import {
   isPendingSelector,
   isFetchedSelector,
 } from '@core/store/selectors/auth.selectors';
+import { ConfirmationService } from './shared/confirmation-modal/service/confirmation.service';
 
 @Component({
   selector: 'app-root',
@@ -18,8 +19,13 @@ export class AppComponent implements OnInit {
   isPending: Observable<boolean> = this.store.select(isPendingSelector);
 
   isFetched: Observable<boolean> = this.store.select(isFetchedSelector);
+  isModalOpened$: BehaviorSubject<boolean> =
+    this.confirmationService.isModalOpened$;
 
-  constructor(private store: Store) {}
+  constructor(
+    private store: Store,
+    public confirmationService: ConfirmationService
+  ) {}
 
   ngOnInit(): void {
     const token: string | null = localStorage.getItem('token');
