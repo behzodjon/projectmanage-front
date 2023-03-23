@@ -8,12 +8,23 @@ import { UserService } from './services/user.service';
 import { TranslateModule } from '@ngx-translate/core';
 import { SpinnerModule } from '@app/shared/spinner/spinner.module';
 import { BoardModalComponent } from '@app/core/components/board-modal/board-modal.component';
+import { DragDropModule } from '@angular/cdk/drag-drop';
+import { ColumnComponent } from './components/column/column.component';
+import { TaskCardComponent } from './components/task-card/task-card.component';
+import { BoardPageComponent } from './pages/board-page/board-page.component';
+import { ColumnService } from './services/column.service';
+import { TaskService } from './services/task.service';
+import { TaskModalComponent } from './components/task-modal/task-modal.component';
 
 @NgModule({
   declarations: [
+    BoardPageComponent,
     ProjectsPageComponent,
     ProjectItemComponent,
     BoardModalComponent,
+    ColumnComponent,
+    TaskCardComponent,
+    TaskModalComponent,
   ],
   imports: [
     TranslateModule,
@@ -22,7 +33,8 @@ import { BoardModalComponent } from '@app/core/components/board-modal/board-moda
     FormsModule,
     ReactiveFormsModule,
     SpinnerModule,
+    DragDropModule,
   ],
-  providers: [UserService],
+  providers: [UserService, ColumnService, TaskService],
 })
 export class ProjectsModule {}

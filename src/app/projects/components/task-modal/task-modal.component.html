@@ -1,15 +1,11 @@
-<div
-  class="fixed inset-0 z-10 overflow-y-auto"
-  [class.block]="isBoardModalVisible"
-  [class.hidden]="!isBoardModalVisible"
->
+<div class="fixed inset-0 z-10 overflow-y-auto" *ngIf="isModalVisible">
   <div
     class="flex items-end justify-center min-h-screen px-4 pt-4 pb-20 text-center sm:block sm:p-0"
   >
     <div class="fixed inset-0 transition-opacity">
       <div class="absolute inset-0 bg-gray-500 opacity-75"></div>
     </div>
-    <form [formGroup]="boardForm" (ngSubmit)="submitForm()">
+    <form [formGroup]="taskForm" (ngSubmit)="submitForm()">
       <div
         class="inline-block overflow-hidden text-left align-bottom transition-all transform bg-white rounded-lg shadow-xl sm:my-8 sm:align-middle sm:max-w-lg sm:w-full"
       >
@@ -29,11 +25,25 @@
                   <div class="mt-1">
                     <input
                       type="text"
-                      formControlName="boardTitle"
+                      formControlName="taskTitle"
                       name="boardTitle"
                       id="boardTitle"
                       class="block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                     />
+                  </div>
+                </div>
+                <div>
+                  <label
+                    for="boardTitle"
+                    class="block text-sm font-medium text-gray-700"
+                    >Task description</label
+                  >
+                  <div class="mt-1">
+                    <textarea
+                      formControlName="taskDescription"
+                      rows="3"
+                      placeholder="Enter task description"
+                    ></textarea>
                   </div>
                 </div>
                 <div class="mt-4">
@@ -58,7 +68,7 @@
                     </div>
                   </div>
                   <select
-                    formControlName="boardUser"
+                    formControlName="taskUser"
                     type="text"
                     class="block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                     placeholder="Choose user"

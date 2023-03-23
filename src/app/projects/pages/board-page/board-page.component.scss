@@ -1,0 +1,94 @@
+.board {
+    @apply flex flex-col w-full h-[calc(100vh-138px)] bg-[url('/assets/images/board-bg-1.webp')] bg-cover pb-2;
+  
+    &__header {
+      @apply flex md:flex-row flex-col justify-between items-center md:py-3 md:px-5 mb-2  p-2;
+    }
+  
+    &__title-wrapper {
+      @apply flex items-center;
+    }
+  
+    &__button-edit {
+      @apply w-full rounded w-7 h-7 p-[4px] mx-1 rounded-md;
+    }
+  
+
+  
+    &__search {
+      @apply w-[18rem];
+    }
+  
+    &__users-wrapper {
+      @apply flex justify-end w-72;
+    }
+  
+    &__all-columns {
+      @apply flex items-start w-full max-w-full mx-0 px-5 h-full min-h-[280px] grow-0 flex-row gap-3 md:gap-2
+      overflow-x-auto overflow-y-hidden;
+      scrollbar-gutter: stable;
+  
+      &::-webkit-scrollbar {
+        @apply w-[8px];
+      }
+      &::-webkit-scrollbar-track {
+        @apply mx-4 bg-transparent rounded-xl;
+      }
+      &::-webkit-scrollbar-thumb {
+        @apply border-[6px] border-solid border-transparent rounded-xl
+        bg-clip-content;
+      }
+    }
+  
+    &__column {
+      @apply flex flex-row items-start justify-between box-border h-full;
+    }
+  
+    &__column-drag-handle {
+      @apply relative mr-[-18rem] w-72 h-6 cursor-move z-10;
+    }
+  
+    &__column-component {
+      @apply h-full;
+    }
+  
+    &__column-last {
+      @apply relative flex flex-col items-center flex-shrink-0 h-20 border-2
+      border-dashed  opacity-75 w-72 rounded-xl hover:bg-white hover:border-solid hover:opacity-100
+      hover:drop-shadow-[0_3px_3px_rgba(0,0,0,0.1)] transition duration-75;
+    }
+  }
+  
+  .column {
+    &__button-add-column {
+  
+      span {
+        @apply text-3xl;
+      }
+    }
+  }
+  
+  .cdk-drag-preview {
+    @apply box-border drop-shadow-[0_5px_5px_#0003];
+  }
+  
+  .cdk-drag-placeholder {
+    @apply opacity-0;
+  }
+  
+  .board__all-columns.cdk-drop-list-dragging .board__column:not(.cdk-drag-placeholder),
+  .cdk-drag-animating {
+    @apply transition-transform duration-300 ease-in-out;
+  }
+  
+  .search {
+  
+    &__form {
+      @apply flex w-full items-center gap-x-2 rounded-md md:p-2 p-[2px];
+  
+      input {
+        @apply w-full;
+      }
+    }
+  }
+  

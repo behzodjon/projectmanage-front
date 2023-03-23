@@ -1,1 +1,35 @@
-<p>board-page works!</p>
+<section class="py-20">
+  <div class="container px-4">
+    <div class="flex justify-end">
+      <button
+        (click)="addColumn()"
+        type="button"
+        class="inline-block rounded bg-blue-500 px-6 pt-2.5 pb-2 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-blue-600"
+      >
+        Add column <span>+</span>
+      </button>
+    </div>
+    <div
+    class="board__all-columns"
+    cdkDropList
+    cdkDropListGroup
+    cdkDropListOrientation="horizontal"
+    (cdkDropListDropped)="drop($event)"
+  >
+    <section class="board__column" *ngFor="let column of columns | async" cdkDrag>
+      <div class="board__column-drag-handle" cdkDragHandle></div>
+      <app-column class="board__column-component" [column]="column"></app-column>
+    </section>
+
+  </div>
+  </div>
+</section>
+<app-task-modal
+  [(isModalVisible)]="isModalVisible"
+  [taskToEdit]="taskToEdit"
+></app-task-modal>
+<app-board-modal
+  [(isBoardModalVisible)]="isBoardModalVisible"
+  [boardToEdit]="boardToEdit"
+></app-board-modal>
+<app-spinner *ngIf="isLoading"></app-spinner>

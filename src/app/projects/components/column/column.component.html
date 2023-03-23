@@ -1,0 +1,45 @@
+<div class="flex flex-col justify-center">
+  <div
+    class="block w-full max-w-sm p-6 bg-white border border-black border-solid rounded-lg shadow-xl dark:bg-neutral-700"
+  >
+    <div class="flex justify-between">
+      <input
+        type="search"
+        [(ngModel)]="columnTitle"
+        (blur)="columnNameChange()"
+        (keydown.enter)="columnNameChange($event)"
+        class=""
+      />
+      <button (click)="onOpenConfirmModal(column)">
+        <i class="text-2xl text-red-500 fa fa-trash"></i>
+      </button>
+    </div>
+    <div
+      class="my-2"
+      cdkDropList
+      [id]="columnId"
+      [cdkDropListData]="tasks"
+      (cdkDropListDropped)="drop($event)"
+    >
+      <div
+        class="block w-full max-w-sm p-6 mb-2 bg-white border border-black border-solid rounded-lg shadow-xl dark:bg-neutral-700"
+        *ngFor="let task of tasks"
+        cdkDrag
+        (cdkDragMoved)="onDragMoved($event)"
+      >
+        <app-task-card
+          [task]="task"
+          (delete)="onOpenConfirmModal($event)"
+        ></app-task-card>
+      </div>
+    </div>
+    <button
+      (click)="newTask()"
+      [disabled]="!columnId"
+      type="button"
+      class="inline-block rounded bg-blue-500 px-6 pt-2.5 pb-2 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-blue-600"
+    >
+      Add task <span>+</span>
+    </button>
+  </div>
+</div>
