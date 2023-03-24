@@ -20,13 +20,9 @@ export class ResponseInterceptor implements HttpInterceptor {
     }
     return next.handle(req).pipe(
       tap(
-        (/* event: HttpEvent<unknown> */): void => {
-          /* if (event instanceof HttpResponse)
-            console.log('Server response', event); */
-        },
+        (): void => {},
         (err): void => {
           if (err instanceof HttpErrorResponse) {
-            /* console.log('error', err.message); */
           }
         }
       )

@@ -1,6 +1,5 @@
 {
   "MENU": {
-    "NEWBOARD": "New board",
     "LANG": {
       "RU": "рус",
       "EN": "eng"
@@ -13,67 +12,20 @@
     "SIGNUP": "Sign up"
   },
 
-  "FOOTER": {
-    "TEAM": "Team"
-  },
-
   "WELCOME": {
     "HERO": {
       "TITLE": "Kanban board",
-      "DESCRIPTION": "The kanban board application will help you break down your tasks into small ones and see the progress of completed tasks, so you can achieve your goals efficiently and without wasting time.",
-      "LINK": "Start now"
+      "DESCRIPTION": "The Kanban board is one of the tools that can be used when implementing the Kanban development management method. These boards can be seen as a variation on traditional kanban cards."
     },
-
-    "ADVANTAGE": {
-      "TITLE": "Our advantages",
-      "LISTITEM": {
-        "CONTROL": "Full control over your project",
-        "UNLIMITED": "Unlimited number of tasks in the project",
-        "SCHEDULE": "Task scheduling",
-        "PERFORMERS": "Control over project performers",
-        "ADDTASK": "Ability to add and remove tasks at any time",
-        "SAVEPROJECTS": "Ability to save and load projects",
-        "REMOTE": "Control remotely"
-      }
-    },
-
-    "TEAM": {
-      "TITLE": "Our team",
-      "PARTICIPATED": {
-        "PAVEL": "Pavel Korshunau, Teamlead. Implemented Authorization, registration, edit user page, backend manipulation, routing, toasts, confirmation modal",
-        "STANISLAV": "Stanislav Kolpakov. Implemented add/edit/delete boards/column/tasks, drag and drop, add users in project",
-        "GREG": "Greg Martinos. Implemented header, footer, welcome, projects pages, dark/light mode, localization"
-      }
-    },
-
-    "COURSE": {
-      "TITLE": "About course",
-      "DESCRIPTIONTITLE": "Who is this course for?",
-      "DESCRIPTION": "The course is intended for RS School 2021Q3 students who have passed RS School stage #2, as well as for new students who have knowledge and practical experience in using the following technologies and tools JavaScript, TypeScript, Git, GitHub, NPM, Webpack, CSS3 / HTML5, Chrome DevTools, Figma, REST API.",
-      "BENEFITS": {
-        "FREE": {
-          "TITLE": "Free education",
-          "DESCRIPTION": "The principle of 'Pay it forward' works at RS School. We share our knowledge with students for free now, hoping that in the future they will return to us as mentors and pass on their knowledge to the next generation of students in the same way."
-        },
-        "PERIOD": {
-          "TITLE": "Training term: 2 months",
-          "DESCRIPTION": "A recording of the webinar will be posted on the school's YouTube channel."
-        },
-        "FOR": {
-          "TITLE": "For evryone",
-          "DESCRIPTION": "Everyone can study at RS School, regardless of age, professional employment and place of residence."
-        },
-        "SERTIFICATE": {
-          "TITLE": "Certificate",
-          "DESCRIPTION": "A certificate is issued to all those who successfully complete the course."
-        }
-      }
+    "ABOUT": {
+      "TITLE": "What is a kanban board? ",
+      "DESCRIPTION": "A kanban board is an agile project management tool designed to help visualize work, limit work-in-progress, and maximize efficiency (or flow). It can help both agile and DevOps teams establish order in their daily work. Kanban boards use cards, columns, and continuous improvement to help technology and service teams commit to the right amount of work, and get it done!"
     }
   },
 
   "MODAL": {
     "TITLE": "Confirm action",
-    "CANCEL": "Cansel",
+    "CANCEL": "Cancel",
     "AGREE": "Confirm",
     "QUESTION": "Are you sure you want to perform this action?"
   },
@@ -84,7 +36,6 @@
     "NEWCOLUMN": "Add new column",
     "ABSENT": "You don't have any boards.",
     "ADD": "Add new board",
-    "TITLE": "Title",
     "BOARDTITLETOOLTIP": "Enter board title",
     "BOARDTITLERULE": "Board must have the name",
     "DESCRIPTION": "Description",
@@ -96,9 +47,6 @@
     "EDITTASK": "Task edit",
     "NEWTASK": "Add new task",
     "DELETETASK": "Delete task",
-    "SEARCH": "Search",
-    "SEARCHPLACEHOLDER": "Search for board or user...",
-    "INTERNALSEARCHPLACEHOLDER": "Search for task or user...",
     "DELETECOLUMN": "Delete column"
   },
   "LOGIN-FORM": {
@@ -114,12 +62,6 @@
     "SUBTITLE": "It's quick and easy",
     "BUTTON": "Create",
     "ANOTHER_ACCOUNT": "Already have an account?"
-  },
-  "EDIT-FORM": {
-    "TITLE": "Edit user",
-    "SAVE": "Save changes",
-    "DELETE": "Delete user",
-    "BACK": "Back"
   },
   "SIGN-UP-FORM": {
     "CONFIRM": "Please enter a confirmational password"

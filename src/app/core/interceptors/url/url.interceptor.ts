@@ -15,7 +15,6 @@ export class UrlInterceptor implements HttpInterceptor {
     next: HttpHandler
   ): Observable<HttpEvent<unknown>> {
     if (req.url.includes('assets')) {
-      // это временные танцы с бубном из-за непонятно для чего сделанной подгрузки svg из asset'ов
       return next.handle(req);
     }
     const httpRequest: HttpRequest<unknown> = req.clone({
