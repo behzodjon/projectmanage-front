@@ -10,18 +10,21 @@
       </button>
     </div>
     <div
-    class="board__all-columns"
-    cdkDropList
-    cdkDropListGroup
-    cdkDropListOrientation="horizontal"
-    (cdkDropListDropped)="drop($event)"
-  >
-    <section class="board__column" *ngFor="let column of columns | async" cdkDrag>
-      <div class="board__column-drag-handle" cdkDragHandle></div>
-      <app-column class="board__column-component" [column]="column"></app-column>
-    </section>
-
-  </div>
+      class="board__all-columns flex items-start w-full max-w-full mx-0 px-5 h-full min-h-[280px] grow-0 flex-row gap-3 md:gap-2 overflow-x-auto overflow-y-hidden"
+      cdkDropList
+      cdkDropListGroup
+      cdkDropListOrientation="horizontal"
+      (cdkDropListDropped)="drop($event)"
+    >
+      <section
+        class="flex flex-row items-start justify-between box-border h-full"
+        *ngFor="let column of columns | async"
+        cdkDrag
+      >
+        <div class="board__column-drag-handle" cdkDragHandle></div>
+        <app-column class="h-full" [column]="column"></app-column>
+      </section>
+    </div>
   </div>
 </section>
 <app-task-modal

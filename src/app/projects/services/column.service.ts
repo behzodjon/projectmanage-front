@@ -13,25 +13,12 @@ export class ColumnService {
 
   private columnStore: Column[] = [];
 
-  private colorsColumn: string[] = [];
-
   get columns(): Column[] {
     return this.columnStore;
   }
 
   set columns(value: Column[]) {
     this.columnStore = value;
-  }
-
-  getColor(columnId: string): number {
-    let result: number;
-    if (this.colorsColumn.includes(columnId)) {
-      result = this.colorsColumn.findIndex((item) => item === columnId);
-    } else {
-      this.colorsColumn.push(columnId);
-      result = this.colorsColumn.length - 1;
-    }
-    return result;
   }
 
   makeColumnTemplate(): void {

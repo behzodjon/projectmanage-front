@@ -1,7 +1,15 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Task } from '@app/shared/models/Task';
-import { BehaviorSubject, map, Observable, of, Subject, switchMap, tap } from 'rxjs';
+import {
+  BehaviorSubject,
+  map,
+  Observable,
+  of,
+  Subject,
+  switchMap,
+  tap,
+} from 'rxjs';
 import { BoardService } from './board.service';
 import { ColumnService } from './column.service';
 
@@ -13,7 +21,11 @@ export class TaskService {
 
   allTasks: BehaviorSubject<Task[]> = new BehaviorSubject<Task[]>([]);
 
-  constructor(private http: HttpClient, private boardService: BoardService, private columnService: ColumnService) {}
+  constructor(
+    private http: HttpClient,
+    private boardService: BoardService,
+    private columnService: ColumnService
+  ) {}
 
   editTask(task: Task): void {
     if (!task.userId) {
@@ -31,34 +43,39 @@ export class TaskService {
       tap((tasks) => {
         this.taskStore = tasks;
         this.allTasks.next(tasks);
-        // this.boardService.loadingOff();
-      }),
+      })
     );
   }
 
   createTask(task: Task): Observable<Task> {
     const { title, order, description, userId, users } = task;
-    return this.http.post<Task>(`boards/${this.boardService.boardId}/columns/${task.columnId}/tasks`, {
-      title,
-      order,
-      description,
-      userId,
-      users,
-    });
+    return this.http.post<Task>(
+      `boards/${this.boardService.boardId}/columns/${task.columnId}/tasks`,
+      {
+        title,
+        order,
+        description,
+        userId,
+        users,
+      }
+    );
   }
 
   updateTask(task: Task): Observable<Task> {
     const { title, order, columnId, description, userId, users } = task;
     this.boardService.loadingOn();
     return this.http
-      .put<Task>(`boards/${this.boardService.boardId}/columns/${task.columnId}/tasks/${task._id}`, {
-        title,
-        order,
-        columnId,
-        description,
-        userId,
-        users,
-      })
+      .put<Task>(
+        `boards/${this.boardService.boardId}/columns/${task.columnId}/tasks/${task._id}`,
+        {
+          title,
+          order,
+          columnId,
+          description,
+          userId,
+          users,
+        }
+      )
       .pipe(
         tap(() => {
           this.taskStore = this.taskStore.map((item) => {
@@ -69,7 +86,7 @@ export class TaskService {
           });
           this.allTasks.next(this.taskStore);
           this.boardService.loadingOff();
-        }),
+        })
       );
   }
 
@@ -82,11 +99,13 @@ export class TaskService {
         this.allTasks.next(this.taskStore);
         this.boardService.loadingOff();
         return of(this.taskStore);
-      }),
+      })
     );
   }
 
-  updateTasksSet(tasksSet: Pick<Task, '_id' | 'order' | 'columnId'>[]): Observable<Task[]> {
+  updateTasksSet(
+    tasksSet: Pick<Task, '_id' | 'order' | 'columnId'>[]
+  ): Observable<Task[]> {
     return this.http.patch<Task[]>('tasksSet', tasksSet);
   }
 

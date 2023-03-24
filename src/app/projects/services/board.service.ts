@@ -22,8 +22,6 @@ export class BoardService {
 
   board: BehaviorSubject<Board> = new BehaviorSubject<Board>(this.boardObj);
 
-  search: Subject<string> = new Subject();
-
   isLoading: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(true);
 
   private _trigger: Subject<boolean> = new Subject<boolean>();
@@ -51,10 +49,6 @@ export class BoardService {
       .subscribe((user) => {
         this.currentUser = user;
       });
-  }
-
-  setSearch(value: string): void {
-    this.search.next(value);
   }
 
   get owner(): string {

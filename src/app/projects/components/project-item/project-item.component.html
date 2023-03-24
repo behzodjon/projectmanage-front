@@ -1,21 +1,22 @@
-<a [routerLink]="'board/' + project._id">
-  <div class="flex  justify-center">
-    <div
-      class="block w-full max-w-sm p-6 bg-white border border-black border-solid rounded-lg shadow-xl dark:bg-neutral-700"
-    >
+<div class="flex justify-center">
+  <div
+    class="block w-full max-w-sm p-6 bg-white border border-black border-solid rounded-lg shadow-xl dark:bg-neutral-700"
+  >
+    <a [routerLink]="'board/' + project._id">
       <h5
-        class="mb-2 text-xl font-medium leading-tight text-neutral-800 dark:text-neutral-50"
+        class="mb-2 text-xl font-medium leading-tight text-neutral-800 dark:text-neutral-50 hover:underline"
       >
         {{ project.title }}
       </h5>
-      <div class="flex justify-end gap-4">
-        <button (click)="edit.emit()">
-          <i class="text-2xl text-green-500 fa fa-edit"></i>
-        </button>
-        <button (click)="delete.emit()">
-          <i class="text-2xl text-red-500 fa fa-trash"></i>
-        </button>
-      </div>
+    </a>
+
+    <div class="flex justify-end gap-4">
+      <button (click)="edit.emit()">
+        <i class="text-2xl text-green-500 fa fa-edit"></i>
+      </button>
+      <button (click)="delete.emit()">
+        <i class="text-2xl text-red-500 fa fa-trash"></i>
+      </button>
     </div>
   </div>
-</a>
+</div>

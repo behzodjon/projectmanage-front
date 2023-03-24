@@ -3,51 +3,87 @@
   <div
     class="container flex flex-wrap items-center justify-between w-full mx-auto"
   >
-    <nav>
-      <ul
-        class="flex items-center justify-between text-sm font-bold text-white no-underline uppercase"
-      >
-        <li>
-          <a
-            routerLink="/"
-            [routerLinkActive]="'btn-inline_active'"
-            [routerLinkActiveOptions]="{ exact: true }"
-            class="px-4 hover:text-gray-200 hover:underline"
-            >Home</a
-          >
-        </li>
-        <li>
-          <a
-            class="px-4 hover:text-gray-200 hover:underline"
-            routerLink="/auth/login"
-          >
-            Login
-          </a>
-        </li>
-        <li>
-          <a
-            class="px-4 hover:text-gray-200 hover:underline"
-            routerLink="/auth/sign-up"
-          >
-            Sign Up
-          </a>
-        </li>
-      </ul>
-    </nav>
+    <nav class="flex items-center">
+      <ng-container *ngIf="user$ | async; else notLoggedIn">
+        <ul
+          class="flex items-center justify-between text-sm font-bold text-white no-underline uppercase"
+        >
+          <li>
+            <a
+              routerLink="/"
+              [routerLinkActive]="'btn-inline_active'"
+              [routerLinkActiveOptions]="{ exact: true }"
+              class="px-4 hover:text-gray-200 hover:underline"
+              >Home</a
+            >
+          </li>
+          <li>
+            <a
+              class="px-4 hover:text-gray-200 hover:underline"
+              routerLink="/projects"
+            >
+              {{ "MENU.PROJECTS" | translate }}
+            </a>
+          </li>
+          <li>
+            <a
+              class="px-4 hover:text-gray-200 hover:underline"
+              routerLink="/"
+              (click)="onLogOut()"
+            >
+              Logout
+            </a>
+          </li>
+        </ul>
+      </ng-container>
 
-    <div class="flex items-center pr-6 text-lg text-white no-underline">
-      <a class="" href="#">
-        <i class="fab fa-facebook"></i>
-      </a>
-      <a class="pl-6" href="#">
-        <i class="fab fa-instagram"></i>
-      </a>
-      <a class="pl-6" href="#">
-        <i class="fab fa-twitter"></i>
-      </a>
-      <a class="pl-6" href="#">
-        <i class="fab fa-linkedin"></i>
-      </a>
-    </div>
+      <ng-template #notLoggedIn>
+        <ul
+          class="flex items-center justify-between text-sm font-bold text-white no-underline uppercase"
+        >
+          <li>
+            <a
+              routerLink="/"
+              [routerLinkActive]="'btn-inline_active'"
+              [routerLinkActiveOptions]="{ exact: true }"
+              class="px-4 hover:text-gray-200 hover:underline"
+              >Home</a
+            >
+          </li>
+          <li>
+            <a
+              class="px-4 hover:text-gray-200 hover:underline"
+              routerLink="/auth/login"
+            >
+              {{ "MENU.LOGIN" | translate }}
+            </a>
+          </li>
+          <li>
+            <a
+              class="px-4 hover:text-gray-200 hover:underline"
+              routerLink="/auth/sign-up"
+            >
+              {{ "MENU.SIGNUP" | translate }}
+            </a>
+          </li>
+        </ul>
+      </ng-template>
+      <div class="lang flex items-center gap-x-2">
+        <button
+          type="button"
+          [class.text-white]="appLanguage === 'ru'"
+          (click)="onToggleLang('ru')"
+        >
+          {{ "MENU.LANG.RU" | translate }}
+        </button>
+        <button
+          type="button"
+          [class.text-white]="appLanguage === 'en'"
+          (click)="onToggleLang('en')"
+        >
+          {{ "MENU.LANG.EN" | translate }}
+        </button>
+      </div>
+    </nav>
   </div>
 </nav>

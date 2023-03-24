@@ -23,10 +23,6 @@ import { ConfirmationTitles } from '@app/shared/confirmation-modal/enum/confirma
 export class ColumnComponent implements OnChanges {
   @Input() column: Column = new Column();
 
-  searchTerm = this.boardService.search;
-
-  color: string = '';
-
   columnTitle: string = '';
 
   tasks: Task[] = [];
@@ -81,26 +77,6 @@ export class ColumnComponent implements OnChanges {
       this.tasks = [];
       this.tasks = value.filter((task) => task.columnId === this.columnId);
     });
-    this.chooseColor();
-  }
-
-  private chooseColor(): void {
-    const colorNum = this.columnService.getColor(this.columnId);
-    enum Colors {
-      indigo,
-      red,
-      gold,
-      blue,
-      green,
-      orange,
-      pink,
-    }
-
-    const keys = Object.keys(Colors);
-    const realKeys = keys.slice(keys.length / 2, keys.length);
-    const random = realKeys[colorNum % (realKeys.length - 1)];
-
-    this.color = `color-${random}`;
   }
 
   columnNameChange(event?: Event): void {

@@ -12,7 +12,7 @@ import { Board } from '@app/shared/models/Board';
   templateUrl: './project-item.component.html',
   styleUrls: ['./project-item.component.scss'],
 })
-export class ProjectItemComponent implements OnChanges {
+export class ProjectItemComponent {
   @Output() edit = new EventEmitter();
 
   @Output() delete = new EventEmitter();
@@ -22,6 +22,4 @@ export class ProjectItemComponent implements OnChanges {
   userList: string[] = [];
 
   isOwner: boolean = false;
-
-  ngOnChanges(): void {}
 }

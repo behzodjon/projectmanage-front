@@ -13,7 +13,6 @@ import { ActivatedRoute } from '@angular/router';
 import { TaskService } from '@app/projects/services/task.service';
 import { ColumnService } from '@app/projects/services/column.service';
 import { UserService } from '@app/projects/services/user.service';
-import { FormControl, FormGroup } from '@angular/forms';
 import { Board } from '@app/shared/models/Board';
 import { Column } from '@app/shared/models/Column';
 import { Task } from '@app/shared/models/Task';
@@ -44,12 +43,6 @@ export class BoardPageComponent implements OnDestroy, OnInit {
 
   isLoading: boolean = true;
 
-  searchForm: FormGroup = new FormGroup({
-    search: new FormControl<string>(''),
-  });
-
-  searchTerm: string = '';
-
   isOwner: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
   constructor(
@@ -59,22 +52,6 @@ export class BoardPageComponent implements OnDestroy, OnInit {
     private userService: UserService,
     private taskService: TaskService
   ) {}
-
-  doSearch(): void {
-    this.boardService.setSearch(this.searchTerm);
-  }
-
-  subscribeForFormValueChanges(): void {
-    this.subscriptions.add(
-      this.searchForm
-        .get('search')
-        ?.valueChanges.pipe(debounceTime(300))
-        .subscribe((value) => {
-          this.searchTerm = value;
-          this.doSearch();
-        })
-    );
-  }
 
   subscribeForUsers(): void {
     this.subscriptions.add(
@@ -143,11 +120,9 @@ export class BoardPageComponent implements OnDestroy, OnInit {
   }
 
   ngOnInit(): void {
-    // this.boardService.loadingOn();
     this.subscribeForLoader();
     this.subscribeForSequence();
     this.subscribeForUsers();
-    this.subscribeForFormValueChanges();
   }
 
   ngOnDestroy(): void {
