@@ -93,6 +93,9 @@ export class AuthEffects {
   private logInSuccess$ = createEffect(() =>
     this.actions$.pipe(
       ofType(AuthActions.LogInSuccess),
+      tap(() => {
+        this.router.navigateByUrl('/projects');
+      }),
       map((data: LoginResponseModel) => AuthActions.getUser(data))
     )
   );

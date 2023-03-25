@@ -31,7 +31,7 @@
               routerLink="/"
               (click)="onLogOut()"
             >
-              Logout
+              {{ "MENU.LOGOUT" | translate }}
             </a>
           </li>
         </ul>
@@ -68,7 +68,7 @@
           </li>
         </ul>
       </ng-template>
-      <div class="lang flex items-center gap-x-2">
+      <div class="flex items-center lang gap-x-2">
         <button
           type="button"
           [class.text-white]="appLanguage === 'ru'"

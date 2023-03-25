@@ -8,7 +8,7 @@
     "DELETEACCOUNT": "Delete account",
     "EDITUSER": "Edit user",
     "LOGIN": "Log in",
-    "LOGOUT": "Log out",
+    "LOGOUT": "Logout",
     "SIGNUP": "Sign up"
   },
 
@@ -43,11 +43,12 @@
     "TITLETOOLTIP": "Enter task title",
     "TITLERULE": "Task must have the name",
     "CLOSE": "Close",
-    "SAVE": "Save changes",
+    "SAVE": "Save",
     "EDITTASK": "Task edit",
     "NEWTASK": "Add new task",
     "DELETETASK": "Delete task",
-    "DELETECOLUMN": "Delete column"
+    "DELETECOLUMN": "Delete column",
+    "USERS": "Users"
   },
   "LOGIN-FORM": {
     "TITLE": "Sign In",

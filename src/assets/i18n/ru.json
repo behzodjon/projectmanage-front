@@ -51,12 +51,10 @@
     "CLOSE": "Отмена",
     "SAVE": "Сохранить",
     "EDITTASK": "Редактирование задачи",
-    "NEWTASK": "Добавление задачи",
+    "NEWTASK": "Добавить задачи",
     "DELETETASK": "Удаление задачи",
-    "SEARCH": "Искать",
-    "SEARCHPLACEHOLDER": "Найти проект или участника...",
-    "INTERNALSEARCHPLACEHOLDER": "Найти задачу или участника...",
-    "DELETECOLUMN": "Удаление колонки"
+    "DELETECOLUMN": "Удаление колонки",
+    "USERS": "Пользователи"
   },
   "LOGIN-FORM": {
     "TITLE": "Войти",
